@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\CategoryCantroller;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\MainController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -16,9 +18,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [MainController::class, 'index']);
+
 Route::get('/login', function (\Illuminate\Http\Request $request) {
     if ($request->route()->name('login') && !Auth::guest()) {
         return redirect('dashboard');
@@ -36,7 +37,8 @@ Route::middleware('auth')->group(function () {
         Route::get('/', function () {
             return view('admin.dashboard');
         });
-        Route::resource('categories', CategoryCantroller::class);
+        Route::resource('categories', CategoryController::class);
+        Route::resource('products', ProductController::class);
     });
 
 });

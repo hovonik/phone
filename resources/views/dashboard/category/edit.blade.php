@@ -10,6 +10,6 @@
                    placeholder="Enter category name">
             @error('name')<span style="color:red">{{$message}}</span><br/>@enderror
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">Update</button>
     </form>
 @endsection
